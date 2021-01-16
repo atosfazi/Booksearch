@@ -1,0 +1,23 @@
+<!-- templates/home.html -->
+<head>
+    {% load static %}
+    <!-- Prism CSS -->
+    <link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript for Materialize CSS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+
+<h1 style="text-align:center">Booksearch</h1>
+
+
+<form autocomplete="off" action="{% url 'search_results' %}" method="get">
+  <input style="text-align:center" name="q" type="text" placeholder="Wpisz tytuł lub autora...">
+     <div class="center">
+     <button style="text-align:center">Szukaj</button>
+         <div/>
+</form>
+
+

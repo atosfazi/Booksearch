@@ -1,0 +1,64 @@
+<!-- templates/search_results.html -->
+<head>
+    {% load static %}
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript for Materialize CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+    .equal-col {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .card-show-similar{
+        height: 100%;
+        margin: 0;
+    }
+
+    .card{
+        margin: 0;
+    }
+
+    .btn{
+        height: 72px;
+    }
+    </style>
+</head>
+<div class="container">
+    <h1>Znalezione książki</h1>
+
+    {% for book in object_list %}
+    <div class="row equal-col">
+        <div class="col m10">
+            <div class="card pink darken-1">
+                <div class="card-content white-text">
+                    <p><U><i>{{ book.genre }}</i></U></p>
+                    <p> </p>
+                    <p><b>{{ book.title }}, {{ book.author }}</b></p>
+                    <p>{{ book.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col m2">
+            <div class="card-show-similar card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <form method="get" action="{% url 'similar_books_results' %}">
+                        <input type="hidden" name="p" value="{{ book.book_id }}">
+                        <button type='submit' class="btn" style="text-align:center">Pokaż podobne</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="row">
+        <div>
+            <a href="{% url 'home' %}" style='font-size:2em'>
+                <span style="font-weight:bold">Wyszukaj ponownie </span>
+            </a>
+        </div>
+    </div>
+</div>
